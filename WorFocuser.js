@@ -2,7 +2,7 @@ var WorFocuser = (function(document, window) {
     var $ = {
         target: null,
         overlay: null,
-        timeout: null,
+        timer: null,
         init: function() {
             $.overlay = createOverlay();
         },
