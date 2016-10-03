@@ -1,56 +1,66 @@
 <html>
-    <head>
-        <style type="text/css">
-            #overlay{
-            	position: absolute;
-            	z-index: 99999;
-				box-shadow: 0 0 0 1000px rgba(0,0,0,0.8);
-				width: 100px;
-				height: 100px;
-				pointer-events: none;
-			}
-			#buttonA{
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-			#buttonB{
-				position: absolute;
-				top: 0;
-				right: 0;
-			}
-			#buttonC{
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translateX(50%);
-			}
-			#buttonD{
-				position: absolute;
-				bottom: 0;
-				left: 50%;
-				transform: translateX(50%);
-			}
-        </style>
-        <script src="WorFocuser.js" type="text/javascript">
-        </script>
-    </head>
-    <body>
-        <div>
-            <!-- <div id="overlay">
-            </div> -->
-            <button id="buttonA" onclick="WorFocuser.toggle('buttonB')">
-                This A
-            </button>
-            <button id="buttonB" onclick="WorFocuser.lostFocus()">
-                This B
-            </button>
-            <button id="buttonC">
-                This C
-            </button>
-            <button id="buttonD">
-                This D
-            </button>
-        </div>
-    </body>
+	<head>
+		<style type="text/css">
+		#overlay{
+			position: absolute;
+			z-index: 99999;
+						box-shadow: 0 0 0 1000px rgba(0,0,0,0.8);
+						width: 100px;
+						height: 100px;
+						pointer-events: none;
+					}
+					#buttonA{
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+					#buttonB{
+						position: absolute;
+						top: 0;
+						right: 0;
+					}
+					#buttonC{
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translateX(50%);
+					}
+					#buttonD{
+						position: absolute;
+						bottom: 0;
+						left: 50%;
+						transform: translateX(50%);
+					}
+		</style>
+		<script src="WorFocuser.js" type="text/javascript">
+		</script>
+	</head>
+	<body>
+		<div>
+			<!-- <div id="overlay">
+			</div> -->
+			<button id="buttonA">
+			This A
+			</button>
+			<button id="buttonB" onclick="WorFocuser.lostFocus()">
+			This B
+			</button>
+			<button id="buttonC">
+			This C
+			</button>
+			<button id="buttonD">
+			This D
+			</button>
+		</div>
+		<script type="text/javascript">
+			var btn = document.getElementById("buttonA");
+			btn.addEventListener("click",function(){
+				WorFocuser.toggle("buttonA");
+			});
+			var btnB = document.getElementById("buttonB");
+			btnB.addEventListener("click",function(){
+				WorFocuser.relocation(btnB);
+			});
+		</script>
+	</body>
 </html>

@@ -21,13 +21,10 @@ var WorFocuser = (function(document, window) {
             return overlay;
         },
         relocation: function(e) {
-            if ($.target === null) {
-                if (e === null || e === undefined) {
-                    return;
-                } else {
-                    $.target = e;
-                }
+            if (e !== null || e !== undefined) {
+                $.target = e;
             }
+            if ($.target === null) {return;}
             var height = $.target.offsetHeight;
             var width = $.target.offsetWidth;
             var top = $.target.offsetTop;
@@ -52,7 +49,12 @@ var WorFocuser = (function(document, window) {
             if ($.overlay === null) {
                 $.overlay = $.createOverlay();
             }
+            if ($.overlay.style.display === "block") {
+                $.lostFocus();
+                return;
+            }
             $.relocation(element);
+            return;
         },
         lostFocus: function() {
             var overlay = document.getElementById('WorOverley');
