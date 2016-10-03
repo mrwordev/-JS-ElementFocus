@@ -2,6 +2,7 @@ var WorFocuser = (function(document, window) {
     var $ = {
         target: null,
         overlay: null,
+        timeout: null,
         init: function() {
             $.overlay = createOverlay();
         },
@@ -21,23 +22,30 @@ var WorFocuser = (function(document, window) {
             return overlay;
         },
         relocation: function(e) {
-            if (e !== null || e !== undefined) {
+            if (e !== null && e !== undefined) {
                 $.target = e;
             }
-            if ($.target === null) {return;}
+            if ($.target === null) {
+                return;
+            }
             var height = $.target.offsetHeight;
             var width = $.target.offsetWidth;
             var top = $.target.offsetTop;
             var left = $.target.offsetLeft;
-            $.overlay.style.height = height;
-            $.overlay.style.width = width;
-            $.overlay.style.top = top;
-            $.overlay.style.left = left;
+            $.overlay.style.height = height + "px";
+            $.overlay.style.width = width + "px";
+            $.overlay.style.top = top + "px";
+            $.overlay.style.left = left + "px";
             $.overlay.style.display = "block";
             window.addEventListener("resize", function($) {
                 return function() {
-                    console.log("resize");
-                    $.relocation();
+                    // console.log("resize");
+                    clearTimeout($.timer);
+                    $.timer = setTimeout(function(){
+                        // console.log("End Event");
+                        $.relocation();
+                    }, 50);
+                    // $.relocation();
                 }
             }($));
         },
